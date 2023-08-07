@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="csrf-param" content="_csrf-frontend">
+<meta name="csrf-token" content="_Q1qFCOltaUlSk9xH9n7NvKtfDWd1fRwb4hGh-X72jq-PAZ-SpPA_xM-AzZOjp9EnoA4ePvhrUgcyxbTrLiLVw==">
+    <title>Операции</title>
+    <link href="/assets/5b6b74c7/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+<link href="/assets/5b6b74c7/css/app.css?v=79073d" rel="stylesheet">
+<style>
+    .header-language-switcher.dropdown {
+        position: relative;
+    }
+    .header-language-switcher .dropdown-toggle {
+        white-space: nowrap;
+    }
+    .header-language-switcher .dropdown-menu {
+        position: absolute;
+        top: 75px;
+        right: 0;
+        z-index: 1000;
+        display: none;
+        min-width: 10rem;
+        padding: .5rem 0;
+        font-size: 14px;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: .25rem;
+    }
+    .header-language-switcher .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: .25rem 1.5rem;
+        clear: both;
+        font-weight: 300;
+        color: #212529;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+    }
+    .header-language-switcher .dropdown-item.active, .header-language-switcher .dropdown-item:active {
+        color: #fff!important;
+        text-decoration: none;
+        background-color: #7993b1;
+    }
+    .header-language-switcher .dropdown-toggle {
+        cursor: pointer;
+        user-select: none;
+    }
+    .header-language-switcher.open {
+        color: #2F415B;
+    }
+    .header-language-switcher.open .dropdown-menu {
+        display: block;
+    }
+</style>
+<style>
+    .footer-language-switcher.dropdown {
+        position: relative;
+    }
+    .footer-language-switcher .dropdown-toggle {
+        white-space: nowrap;
+    }
+    .footer-language-switcher .dropdown-toggle::after {
+        display: inline-block;
+        margin-left: .255em;
+        vertical-align: .255em;
+        content: "";
+        border-top: .3em solid;
+        border-right: .3em solid transparent;
+        border-bottom: 0;
+        border-left: .3em solid transparent;
+    }
+    .footer-language-switcher .dropdown-menu {
+        position: absolute;
+        bottom: 160%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 10rem;
+        padding: .5rem 0;
+        margin: .125rem 0 0;
+        font-size: 14px;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: .25rem;
+        text-align: center;
+    }
+    .footer-language-switcher .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: .25rem 1.5rem;
+        clear: both;
+        font-weight: 300;
+        color: #212529;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+    }
+    .footer-language-switcher .dropdown-item.active, .footer-language-switcher .dropdown-item:active {
+        color: #fff!important;
+        text-decoration: none;
+        background-color: #7993b1;
+    }
+    .footer-language-switcher .dropdown-toggle {
+        cursor: pointer;
+        user-select: none;
+    }
+    .footer-language-switcher.open {
+        color: #2F415B;
+    }
+    .footer-language-switcher.open .dropdown-menu {
+        display: block;
+    }
+</style>
+<script>    function reloadNotifications() {
+        document.dispatchEvent(
+            new CustomEvent('reloadNotifications', {detail: '/notify-render'})
+        );
+    }</script>    <link rel="shortcut icon" href="/img/favicon_beta.ico" type="image/x-icon">
+    <script>
+        var viewportmeta = document.querySelector('meta[name="viewport"]');
+
+        if (viewportmeta) {
+            if (screen.width < 375) {
+                var newScale = screen.width / 375;
+                viewportmeta.content = 'width=375, minimum-scale=' + newScale + ', maximum-scale=1.0, user-scalable=no, initial-scale=' + newScale + '';
+            } else {
+                viewportmeta.content = 'width=device-width, maximum-scale=1.0, initial-scale=1.0';
+            }
+        }
+    </script>
+</head>
+<body>
+        <div class="out">
+        <div class="page">
+            <div class="header js-header">
+                <div class="header__center center">
+                    <a class="header__logo" href="/dashboard">
+                        <img class="header__pic" src="/img/btr-kassa-dark.ru.6ebd7c1858.png" alt="" />
+                    </a>
+                    <div class="header__wrap js-header-wrap">
+                        <a class="header__logo" href="/dashboard">
+                            <img class="header__pic" src="/img/btr-kassa-dark.ru.6ebd7c1858.png" alt="" />
+                        </a>
+                        <button class="header__close js-header-close">
+                            <i class="las la-times"></i>
+                        </button>
+                        <nav class="header__nav">
+                            <a class="header__link " href="/dashboard">
+                                <div class="header__icon">
+                                    <i class="las la-chart-bar"></i>
+                                </div>
+                                <div class="header__text">Главная</div>
+                            </a>
+                                                                                    <a class="header__link active" href="/operation">
+                                <div class="header__icon">
+                                    <i class="las la-history"></i>
+                                </div>
+                                <div class="header__text">Операции</div>
+                            </a>
+                            <a class="header__link " href="/dispute">
+                                <div class="header__icon">
+                                    <i class="las la-comment-dots"></i>
+                                </div>
+                                <div class="header__text">Диспуты</div>
+                            </a>
+                            <a class="header__link header__link_mobile " href="/setting-profile">
+                                <div class="header__icon">
+                                    <i class="las la-cog"></i>
+                                </div>
+                                <div class="header__text">Настройки</div>
+                            </a>
+                                                        <a class="header__link header__link_mobile " href="/integration">
+                                <div class="header__icon">
+                                    <i class="las la-file-code"></i>
+                                </div>
+                                <div class="header__text">API Документация</div>
+                            </a>
+                            <a class="header__link header__link_mobile" href="/logout">
+                                <div class="header__icon">
+                                    <i class="las la-sign-out-alt"></i>
+                                </div>
+                                <div class="header__text">Выход</div>
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="header__control">
+                        <div class="header__login">
+                            <div class="field__status field__status_active">
+                                suchkov98@gmail.com                            </div>
+                        </div>
+                        
+<div class="dropdown header-language-switcher">
+    <a class="dropdown-toggle header__btn" href="javascript:void();">
+        <i class="las la-globe"></i>
+    </a>
+    <div class="dropdown-menu">
+                    <a class="dropdown-item active"
+               href="javascript:void();"
+            >Русский</a>
+                    <a class="dropdown-item "
+               href="/language?lang=uk"
+            >Українська</a>
+                    <a class="dropdown-item "
+               href="/language?lang=en"
+            >English</a>
+            </div>
+</div>                        <div class="notify">
+                            
+<a class="header__btn" href="javascript:void(0);">
+    <i class="las la-bell-slash"></i>
+</a>
+
+
+                        </div>
+                        <a class="header__btn " href="/setting-profile">
+                            <i class="las la-cog"></i>
+                        </a>
+                        <a class="header__btn" href="/logout">
+                            <i class="las la-sign-out-alt"></i>
+                        </a>
+                    </div>
+                    <div class="header__burger js-header-burger">
+                        <i class="las la-bars"></i>
+                    </div>
+                </div>
+                <div class="header__bg js-header-bg"></div>
+            </div>
+            <div class="page__content">
+                <div class="page__center center">
+                    
+<div class="history">
+    <div class="history__head">
+        <div class="history__title title">Операции</div>
+        <div class="history__control">
+            <a href="#" data-mfp-src="/operation/export-popup" class="history__action js-popup-open" data-effect="mfp-zoom-in">
+                Экспортировать в CSV<i class="las la-cloud-download-alt"></i>
+            </a>
+            <a href="#" data-mfp-src="/operation/config-popup" class="history__action js-popup-open" data-effect="mfp-zoom-in">
+                Настройки<i class="las la-table"></i>
+            </a>
+            <a href="javascript:void(0)" class="history__action js-filters-btn">
+                Фильтры<i class="las la-filter"></i>
+            </a>
+        </div>
+    </div>
+    <div class="filters js-filters">
+        <form id="w0" class="filters__row" action="/operation" method="GET">            <div class="filters__col">
+                <div class="filters__field field field_icon field_icon--left field_calendar">
+                    <div class="field__label">Период времени</div>
+                    <div class="field__wrap">
+                        <input type="text" id="operation-datesrange-filter" class="field__input js-daterange" name="OperationSearch[datesRange]" value="01.08.2023 - 31.08.2023">                        <div class="field__icon"><i class="las la-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">ID транзакции</div>
+                    <div class="field__wrap">
+                        <input type="text" id="operationsearch-id" class="field__input" name="OperationSearch[id]" value="">                    </div>
+                </div>
+            </div>
+            <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">Мерчант ID</div>
+                    <div class="field__wrap">
+                        <input type="text" id="operationsearch-merchantorderid" class="field__input" name="OperationSearch[merchantOrderId]" value="">                    </div>
+                </div>
+            </div>
+            <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">Операция</div>
+                    <div class="field__wrap">
+                        <select id="operationsearch-type" class="field__select" name="OperationSearch[type]">
+<option value=""></option>
+<option value="deposit" selected>Оплата</option>
+<option value="withdrawal">Выплата</option>
+<option value="referralAccrued">Реферальные начисления</option>
+<option value="refund">Возврат (refund)</option>
+<option value="chargeback">Возврат (chargeback)</option>
+<option value="transferWithdrawal">Перевод средств (выплата)</option>
+<option value="transferDeposit">Перевод средств (зачисление)</option>
+</select>                    </div>
+                </div>
+            </div>
+            <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">Сумма</div>
+                    <div class="field__wrap">
+                        <input type="text" id="operationsearch-amount" class="field__input" name="OperationSearch[amount]" value="">                    </div>
+                </div>
+            </div>
+            <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">Статус</div>
+                    <div class="field__wrap">
+                        <select id="operationsearch-paymentstatus" class="field__select" name="OperationSearch[paymentStatus]">
+<option value=""></option>
+<option value="processing">Обработка запроса</option>
+<option value="new">Новая</option>
+<option value="pending">Ожидание оплаты</option>
+<option value="checkPayment">Проверка оплаты</option>
+<option value="in_process_pay">В процессе оплаты</option>
+<option value="transfer_money">Переводим деньги</option>
+<option value="need_to_confirm">Ожидает подтверждения</option>
+<option value="hold_payment">Холд платежа</option>
+<option value="success" selected>Успешно</option>
+<option value="partial_payment">Частичная оплата</option>
+<option value="not_paid">Не оплачено</option>
+<option value="not_paid_timeout">Не оплачено (timeout)</option>
+<option value="not_paid_unavailable_country">Не оплачено (недоступная страна)</option>
+<option value="cancel">Отменено</option>
+<option value="error">Произошла ошибка</option>
+<option value="error_currency">Неверная валюта</option>
+</select>                    </div>
+                </div>
+            </div>
+                        <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">Карта/телефон</div>
+                    <div class="field__wrap">
+                        <input type="text" id="operationsearch-cardmask" class="field__input" name="OperationSearch[cardMask]" value="">                    </div>
+                </div>
+            </div>
+                        <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">Метод</div>
+                    <div class="field__wrap">
+                        <select id="operationsearch-exchangetype" class="field__select" name="OperationSearch[exchangeType]">
+<option value=""></option>
+<option value="Card">Card</option>
+<option value="Card1">Card1</option>
+<option value="P2R">P2R</option>
+<option value="Qiwi">Qiwi</option>
+<option value="RUB_CardRUB">RUB_CardRUB</option>
+<option value="UAH_CardUAH">UAH_CardUAH</option>
+<option value="UAH_TRC20">UAH_TRC20</option>
+</select>                    </div>
+                </div>
+            </div>
+            <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">API ключ</div>
+                    <div class="field__wrap">
+                        <select id="operationsearch-apikeyid" class="field__select" name="OperationSearch[apiKeyId]">
+<option value=""></option>
+<option value="1948">Lzt dev</option>
+<option value="1993">Lzt Prod</option>
+</select>                    </div>
+                </div>
+            </div>
+            <div class="filters__col">
+                <div class="filters__field field field_icon field_icon--left field_calendar">
+                    <div class="field__label">Изменение статуса</div>
+                    <div class="field__wrap">
+                        <input type="text" id="operation-changedstatusdaterange-filter" class="field__input js-daterange" name="OperationSearch[changedStatusDateRange]" value="" data-daterange-allow-empty="true">                        <div class="field__icon"><i class="las la-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="filters__col">
+                <div class="filters__field field">
+                    <div class="field__label">ID плательщика</div>
+                    <div class="field__wrap">
+                        <input type="text" id="operationsearch-payerid" class="field__input" name="OperationSearch[payerId]" value="">                    </div>
+                </div>
+            </div>
+            <div class="filters__col filters__col_control">
+                <div class="filters__line">
+                    <button type="submit" class="filters__btn btn btn_blue">Найти</button>                    <a class="filters__link" href="/operation">Сбросить</a>                </div>
+            </div>
+        </form>    </div>
+    <div class="history__body">
+        <div class="history__scroll">
+    <div class="history__table center">
+        <div class="history__row history__row_head">
+                            <div class="history__cell">Мерчант ID</div>
+                            <div class="history__cell">ID</div>
+                            <div class="history__cell">Дата</div>
+                            <div class="history__cell">Тип <span>операции</span></div>
+                            <div class="history__cell">Метод</div>
+                            <div class="history__cell">Сумма</div>
+                            <div class="history__cell">Статус</div>
+                        <div class="history__cell">Действия</div>
+        </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143351</div>                                    <div class="history__cell">
+    30130737</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:27:56    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Card1</div>
+            </div>
+</div>                                    <div class="history__cell">
+    300.81    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:28:44 +03:00">
+            07.08.23 18:28:44        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130737"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143343</div>                                    <div class="history__cell">
+    30130694</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:26:41    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Card1</div>
+            </div>
+</div>                                    <div class="history__cell">
+    261.96    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:29:05 +03:00">
+            07.08.23 18:29:05        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130694"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143341</div>                                    <div class="history__cell">
+    30130692</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:26:39    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Card1</div>
+            </div>
+</div>                                    <div class="history__cell">
+    111.00    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:28:44 +03:00">
+            07.08.23 18:28:44        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130692"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143336</div>                                    <div class="history__cell">
+    30130677</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:26:08    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Qiwi</div>
+            </div>
+</div>                                    <div class="history__cell">
+    333.00    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:28:14 +03:00">
+            07.08.23 18:28:14        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130677"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143335</div>                                    <div class="history__cell">
+    30130668</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:25:49    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Qiwi</div>
+            </div>
+</div>                                    <div class="history__cell">
+    721.50    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:26:31 +03:00">
+            07.08.23 18:26:31        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130668"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143333</div>                                    <div class="history__cell">
+    30130665</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:25:34    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Card1</div>
+            </div>
+</div>                                    <div class="history__cell">
+    177.60    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:26:52 +03:00">
+            07.08.23 18:26:52        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130665"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143328</div>                                    <div class="history__cell">
+    30130645</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:24:45    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Qiwi</div>
+            </div>
+</div>                                    <div class="history__cell">
+    366.30    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:27:57 +03:00">
+            07.08.23 18:27:57        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130645"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143323</div>                                    <div class="history__cell">
+    30130631</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:24:10    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Qiwi</div>
+            </div>
+</div>                                    <div class="history__cell">
+    111.00    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:26:05 +03:00">
+            07.08.23 18:26:05        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130631"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143322</div>                                    <div class="history__cell">
+    30130626</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:24:02    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Card1</div>
+            </div>
+</div>                                    <div class="history__cell">
+    111.00    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:24:49 +03:00">
+            07.08.23 18:24:49        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130626"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+                    <div class="history__row">
+                                    <div class="history__cell">
+    16143320</div>                                    <div class="history__cell">
+    30130622</div>                                    <div class="history__cell">
+    07.08.2023    <span class="history__time">
+        18:23:57    </span>
+</div>                                    <div class="history__cell">
+    <div class="history__operation">
+        <div class="history__icon">
+            <i class="las la-arrow-right"></i>
+        </div>
+        <div class="history__text">Оплата</div>
+    </div>
+</div>                                    <div class="history__cell no_mobile">
+    <div class="history__company">
+                                <div class="history__text">Qiwi</div>
+            </div>
+</div>                                    <div class="history__cell">
+    182.04    <span class="history__currency">RUB</span>
+</div>                                    <div class="history__cell status__cell">
+    <div class="history__status history__status_completed">
+        Успешно    </div>
+            <div class="history__status-date" title="2023-08-07 18:24:40 +03:00">
+            07.08.23 18:24:40        </div>
+    </div>                
+                <div class="history__cell">
+                    <a class="history__link js-popup-open" href="#" data-mfp-src="/operation/30130622"
+                       data-effect="mfp-zoom-in">
+                        Открыть<i class="las la-info-circle"></i>
+                    </a>
+                </div>
+            </div>
+            </div>
+</div>        <ul class="pagination"><li class="pagination__item active"><a class="pagination__link active" href="/operation?OperationSearch%5BdatesRange%5D=01.08.2023+-+31.08.2023&amp;OperationSearch%5Bid%5D=&amp;OperationSearch%5BmerchantOrderId%5D=&amp;OperationSearch%5Btype%5D=deposit&amp;OperationSearch%5Bamount%5D=&amp;OperationSearch%5BpaymentStatus%5D=success&amp;OperationSearch%5BcardMask%5D=&amp;OperationSearch%5BexchangeType%5D=&amp;OperationSearch%5BapiKeyId%5D=&amp;OperationSearch%5BchangedStatusDateRange%5D=&amp;OperationSearch%5BpayerId%5D=&amp;page=1&amp;per-page=10" data-page="0">1</a></li>
+<li class="pagination__item"><a class="pagination__link" href="/operation?OperationSearch%5BdatesRange%5D=01.08.2023+-+31.08.2023&amp;OperationSearch%5Bid%5D=&amp;OperationSearch%5BmerchantOrderId%5D=&amp;OperationSearch%5Btype%5D=deposit&amp;OperationSearch%5Bamount%5D=&amp;OperationSearch%5BpaymentStatus%5D=success&amp;OperationSearch%5BcardMask%5D=&amp;OperationSearch%5BexchangeType%5D=&amp;OperationSearch%5BapiKeyId%5D=&amp;OperationSearch%5BchangedStatusDateRange%5D=&amp;OperationSearch%5BpayerId%5D=&amp;page=2&amp;per-page=10" data-page="1">2</a></li>
+<li class="pagination__item"><a class="pagination__link" href="/operation?OperationSearch%5BdatesRange%5D=01.08.2023+-+31.08.2023&amp;OperationSearch%5Bid%5D=&amp;OperationSearch%5BmerchantOrderId%5D=&amp;OperationSearch%5Btype%5D=deposit&amp;OperationSearch%5Bamount%5D=&amp;OperationSearch%5BpaymentStatus%5D=success&amp;OperationSearch%5BcardMask%5D=&amp;OperationSearch%5BexchangeType%5D=&amp;OperationSearch%5BapiKeyId%5D=&amp;OperationSearch%5BchangedStatusDateRange%5D=&amp;OperationSearch%5BpayerId%5D=&amp;page=3&amp;per-page=10" data-page="2">3</a></li>
+<li class="pagination__item"><a class="pagination__link" href="/operation?OperationSearch%5BdatesRange%5D=01.08.2023+-+31.08.2023&amp;OperationSearch%5Bid%5D=&amp;OperationSearch%5BmerchantOrderId%5D=&amp;OperationSearch%5Btype%5D=deposit&amp;OperationSearch%5Bamount%5D=&amp;OperationSearch%5BpaymentStatus%5D=success&amp;OperationSearch%5BcardMask%5D=&amp;OperationSearch%5BexchangeType%5D=&amp;OperationSearch%5BapiKeyId%5D=&amp;OperationSearch%5BchangedStatusDateRange%5D=&amp;OperationSearch%5BpayerId%5D=&amp;page=47&amp;per-page=10" data-page="46">...</a></li>
+<li class="pagination__item"><a class="pagination__link" href="/operation?OperationSearch%5BdatesRange%5D=01.08.2023+-+31.08.2023&amp;OperationSearch%5Bid%5D=&amp;OperationSearch%5BmerchantOrderId%5D=&amp;OperationSearch%5Btype%5D=deposit&amp;OperationSearch%5Bamount%5D=&amp;OperationSearch%5BpaymentStatus%5D=success&amp;OperationSearch%5BcardMask%5D=&amp;OperationSearch%5BexchangeType%5D=&amp;OperationSearch%5BapiKeyId%5D=&amp;OperationSearch%5BchangedStatusDateRange%5D=&amp;OperationSearch%5BpayerId%5D=&amp;page=89&amp;per-page=10" data-page="88">89</a></li>
+<li class="pagination__arrow pagination__arrow_next"><a class="pagination__link" href="/operation?OperationSearch%5BdatesRange%5D=01.08.2023+-+31.08.2023&amp;OperationSearch%5Bid%5D=&amp;OperationSearch%5BmerchantOrderId%5D=&amp;OperationSearch%5Btype%5D=deposit&amp;OperationSearch%5Bamount%5D=&amp;OperationSearch%5BpaymentStatus%5D=success&amp;OperationSearch%5BcardMask%5D=&amp;OperationSearch%5BexchangeType%5D=&amp;OperationSearch%5BapiKeyId%5D=&amp;OperationSearch%5BchangedStatusDateRange%5D=&amp;OperationSearch%5BpayerId%5D=&amp;page=2&amp;per-page=10" data-page="1"><i class="las la-angle-right"></i></a></li></ul>    </div>
+</div>
+
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer__center center">
+                    <div class="footer__menu">
+                        <a class="footer__link" href="/about" target="_blank" >
+                            О компании                        </a>
+                        <a class="footer__link" href="/agreements" target="_blank" >
+                            Условия                        </a>
+                        <a class="footer__link" href="/faq" target="_blank" >
+                            FAQ                        </a>
+                        <a class="footer__link" href="/contacts" target="_blank" >
+                            Контакты                        </a>
+                        <a class="footer__link" href="/cookie-policy" target="_blank" >
+                            Политика Cookies                        </a>
+                        <a class="footer__link" href="/privacy-policy" target="_blank" >
+                            Политика конфиденциальности                        </a>
+                        <a class="footer__link" href="/terms-and-conditions" target="_blank" >
+                            Условия и положения                        </a>
+                        <a class="footer__link" href="/aml-policy" target="_blank" >
+                            Политика AML                        </a>
+                        
+<span class="footer__link dropdown footer-language-switcher">
+    <span class="dropdown-toggle" href="javascript:void();">
+        Русский    </span>
+    <div class="dropdown-menu">
+                    <a class="dropdown-item active"
+               href="/language?lang=ru"
+            >Русский</a>
+                    <a class="dropdown-item "
+               href="/language?lang=uk"
+            >Українська</a>
+                    <a class="dropdown-item "
+               href="/language?lang=en"
+            >English</a>
+            </div>
+</span>
+                    </div>
+                    <div class="footer__copyright">© 2023 BetaTransfer. Все права защищены</div>
+                </div>
+            </div>
+        </div>
+    </div>
+                <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src="https://embed.tawk.to/5cf13687b534676f32acc689/1drr7brv5";
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->        
+    <script src="/assets/5b6b74c7/js/lib/jquery.min.js"></script>
+<script src="/assets/fc17d159/yii.js"></script>
+<script src="/assets/5b6b74c7/js/locale/ru.js"></script>
+<script src="/assets/5b6b74c7/js/lib/jquery.magnific-popup.min.js"></script>
+<script src="/assets/5b6b74c7/js/lib/moment.min.js"></script>
+<script src="/assets/5b6b74c7/js/lib/daterangepicker.js"></script>
+<script src="/assets/5b6b74c7/js/lib/svg4everybody.min.js"></script>
+<script src="/assets/5b6b74c7/js/lib/tooltipster.bundle.min.js"></script>
+<script src="/assets/5b6b74c7/js/lib/clipboard.min.js"></script>
+<script src="/assets/5b6b74c7/js/lib/toastr.js"></script>
+<script src="/assets/5b6b74c7/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/assets/5b6b74c7/js/common.js"></script>
+<script src="/assets/fc17d159/yii.activeForm.js"></script>
+<script>    $(document).on('click', '.notify > .header__btn', function(e) {
+        e.preventDefault();
+        
+        var container = $('.notify__container');
+        
+        if (container.length > 0) {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                container.hide();
+            } else {
+                $(this).addClass('active');
+                container.show();
+            }
+        }
+    });
+    
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.notify').length) {
+            $('.notify > .header__btn').removeClass('active');
+            $('.notify__container').hide();
+        }
+    });
+
+    document.addEventListener('reloadNotifications', (e) => {
+        $.post(e.detail, [], function(data) {
+            $('.notify').html(data.html);
+            initScrolling();
+        })
+    });
+
+    $(document).on('click', '.notify__clear, .notify__item__action a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        
+        $.get(url, {}, function(response) {
+            if (response.status) {
+                reloadNotifications();
+            } else {
+                toastr['error'](response.message);
+            }
+        });
+        
+        return false;
+    });
+    
+    (function($) {
+        $(window).on('load', function() {
+            initScrolling();
+        });
+    })(jQuery);
+    
+    setInterval(function() {
+        reloadNotifications();
+    }, 1000 * 60);
+    
+    function initScrolling() {
+        $('.scrollbar').mCustomScrollbar({
+            theme: 'minimal-dark',
+            mouseWheel: {
+                preventDefault: true
+            }
+        });
+    }</script>
+<script>jQuery(function ($) {
+jQuery('#w0').yiiActiveForm([], []);
+    const filterDate = '01.08.2023 - 31.08.2023';
+    const datesRangeInput = $("#operation-datesrange-filter");
+    
+    if (!filterDate.length) {
+        datesRangeInput.val('');
+    } 
+    
+    datesRangeInput
+        .on('input', () => {
+            datesRangeInput.data('daterangepicker').autoUpdateInput = !!datesRangeInput.val().length;
+            if (!datesRangeInput.data('daterangepicker').autoUpdateInput) {
+                datesRangeInput.data('daterangepicker').hideCalendars();
+            }
+        })
+        .on('hide.daterangepicker', () => {
+            datesRangeInput.data('daterangepicker').autoUpdateInput = true;
+        });
+
+    $(".header-language-switcher .dropdown-toggle").on("click", function(e) {
+        e.preventDefault();
+        
+        $(".header-language-switcher").addClass("open");
+        $(".header-language-switcher .header__btn").addClass("active");
+    });
+    $(document).on("click" ,function(e) {
+        if (!$(e.target).closest(".header-language-switcher").length) {
+            $(".header-language-switcher").removeClass("open");
+            $(".header-language-switcher .header__btn").removeClass("active");
+        }
+    });
+
+
+    $(".footer-language-switcher .dropdown-toggle").on("click", function(e) {
+        e.preventDefault();
+        
+        $(".footer-language-switcher").addClass("open")
+    });
+    
+    $(document).on("click", function(event) {
+        if (!event.target.matches(".footer-language-switcher .dropdown-toggle")) {
+            $(".footer-language-switcher").removeClass("open")
+        }
+    });
+
+});</script></body>
+</html>
